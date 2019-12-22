@@ -21,6 +21,7 @@
     <% end %>
     </ul>
   <% end %>
+  <%= link_to '退会する', user_path(current_user), method: :delete, data: { confirm: "本当に退会しますか？" }, class: 'btn btn-danger btn-sm' %>
 <% else %>
   <div class="center jumbotron">
       <div class="text-center">
