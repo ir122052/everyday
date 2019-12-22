@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
-  root to: 'sessions#new'
+  root to: 'tasks#index'
+  
+  resources :tasks, only: [:index, :new, :create, :show, :destroy]
 end

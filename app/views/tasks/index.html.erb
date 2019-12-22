@@ -1,0 +1,36 @@
+<% if logged_in? %>
+  <h1 class="mb-5">管理カレンダー</h1>
+  <%= link_to '作成する', new_task_path, class: 'btn btn-primary btn-lg mb-3' %>
+  <%= month_calendar events: @tasks do |date, tasks| %>
+    <%= date.day %>
+
+    <ul>
+    <% tasks.each do |task| %>
+      <li>
+        <div>
+          <%= task.title %><span><%= task.amount %>(g)<%= task.start_time.strftime("%H:%M") %></span>
+        </div>
+        <div>
+          <% if current_user == task.user %>
+            <%= link_to task, method: :delete, data: { confirm: "削除しますか？" } do %>
+              <i class="far fa-trash-alt"></i>
+             <% end %>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
+<% else %>
+  <div class="center jumbotron">
+      <div class="text-center">
+          <h1>アプリについて</h1>
+      </div>
+      <div class="mt-5">
+          <p>このアプリは制作者が飼っているペットを効率よく管理する、制作者のためのアプリです。そのため、ユーザの新規登録機能は用意しておりません。<br>毎日の薬の時間と2回のエサの時間と食べたグラム(g)を毎回メモ帳に書くのが効率悪いと思い開発しました。<br>
+　           テストユーザ<br>
+　           名前　　　: test<br>
+　           パスワード: password</p>
+      </div>
+  </div>
+<% end %>
