@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   def index
     if logged_in?
     @tasks = current_user.tasks.all
+    count(@task)
     end
   end
 
@@ -38,7 +39,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :amount, :start_time)
+    params.require(:task).permit(:title, :amount, :start_time, :content)
   end
   
   def correct_user

@@ -1,14 +1,48 @@
+<div class="main_page">
 <% if logged_in? %>
   <h1 class="mb-5">管理カレンダー</h1>
-  <%= link_to '作成する', new_task_path, class: 'btn btn-primary btn-lg mb-3' %>
+    <div class="row">
+      <div class="col-sm-4">
+        <table class="table">
+          <tr>
+            <th>先月の合計摂取量</th>
+            <td><%= @last_month_sum %>g</td>
+          </tr>
+          <tr>
+            <th>今月の合計摂取量</th>
+            <td><%= @month_sum %>g</td>
+          </tr>
+        </table>
+        <div>
+        <%= link_to '作成する', new_task_path, class: 'btn btn-primary btn-lg' %>
+        </div>
+      </div>
+      <div class="offset-sm-4 col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i class="far fa-check-circle"></i>記入について</h3>
+          </div>
+          <div class="card-body">
+             <ul>
+               <li>食べたら記録（量、時間)</li>
+               <li>薬の場合は時間のみ</li>
+               <li>何もなければ記録しない</li>
+             </ul>
+          </div>
+         </div>
+       </div>
+     </div>
   <%= month_calendar events: @tasks do |date, tasks| %>
     <%= date.day %>
-
+    
     <ul>
     <% tasks.each do |task| %>
       <li>
         <div>
           <%= task.title %><span><%= task.amount %>(g)<%= task.start_time.strftime("%H:%M") %></span>
+        </div>
+        <div>
+          <%= task.content %>
         </div>
         <div>
           <% if current_user == task.user %>
@@ -21,17 +55,17 @@
     <% end %>
     </ul>
   <% end %>
-  <%= link_to '退会する', user_path(current_user), method: :delete, data: { confirm: "本当に退会しますか？" }, class: 'btn btn-danger btn-sm' %>
+  <%#= link_to '退会する', user_path(current_user), method: :delete, data: { confirm: "本当に退会しますか？" }, class: 'btn btn-danger btn-sm' %>
 <% else %>
   <div class="center jumbotron">
       <div class="text-center">
           <h1>アプリについて</h1>
       </div>
       <div class="mt-5">
-          <p>このアプリは制作者が飼っているペットを効率よく管理する、制作者のためのアプリです。そのため、ユーザの新規登録機能は用意しておりません。<br>毎日の薬の時間と2回のエサの時間と食べたグラム(g)を毎回メモ帳に書くのが効率悪いと思い開発しました。<br>
-　           テストユーザ<br>
-　           名前　　　: test<br>
-　           パスワード: password</p>
-      </div>
+          <p>このアプリは制作者が飼っているペットの管理を効率よく見やすくするアプリです。<br>毎日の薬の時間と2回のエサの時間と食べたグラム(g)を毎回メモ帳に書くのが効率悪いと思い開発しました。</P>
+        <div class="mt-3">
+　         <p>テストユーザ<br>名前　　　: test<br>パスワード: password</p>
+        </div>
   </div>
 <% end %>
+</div>

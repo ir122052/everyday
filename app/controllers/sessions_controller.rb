@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     name = params[:session][:name]
     password = params[:session][:password]
     if login(name, password)
-      flash[:success] = '<i class="fas fa-check-circle"></i>ログインに成功しました。'
+      flash[:success] = 'ログインに成功しました。'
       redirect_to root_url
     else
       flash.now[:danger] = 'ログインできませんでした。'

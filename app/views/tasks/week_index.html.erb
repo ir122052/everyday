@@ -1,0 +1,27 @@
+<h1 class="mb-5">管理カレンダー</h1>
+  
+  <%= link_to '作成する', new_task_path, class: 'btn btn-primary btn-lg mb-3' %>
+  <%= week_calendar events: @tasks do |date, tasks| %>
+    <%= date.day %>
+
+    <ul>
+    <% tasks.each do |task| %>
+      <li>
+        <div>
+          <%= task.title %><span><%= task.amount %>(g)<%= task.start_time.strftime("%H:%M") %></span>
+        </div>
+        <div>
+          <%= task.content %>
+        </div>
+        <div>
+          <% if current_user == task.user %>
+            <%= link_to task, method: :delete, data: { confirm: "削除しますか？" } do %>
+              <i class="far fa-trash-alt"></i>
+             <% end %>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
+  <%= link_to '退会する', user_path(current_user), method: :delete, data: { confirm: "本当に退会しますか？" }, class: 'btn btn-danger btn-sm' %>
