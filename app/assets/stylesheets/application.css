@@ -14,3 +14,13 @@
  *= require_tree .
  *= require_self
  */
+.home_name {
+    font-family: cursive;
+}
+
+h1 {
+    font-family: serif;
+    padding: 0.25em 0.5em;
+    background: #fffaf4;
+    border-left: solid 5px #ffaf58;
+}
