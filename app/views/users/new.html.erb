@@ -11,6 +11,11 @@
           </div>
           
           <div class="form-group">
+              <%=f.label :pets, 'ペットの種類' %>
+              <%= f.text_field :pets, placeholder: '大型犬、チワワ、魚類など何でも自由に', class: 'form-control' %>
+          </div>
+          
+          <div class="form-group">
               <%= f.label :password, 'パスワード' %>
               <%= f.password_field :password, class: 'form-control' %>
           </div>

@@ -1,4 +1,13 @@
 <h1>ユーザの一覧</h1>
-<div>
-  <%= @users %>
-</div>
+<% if @users.any? %>
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+          <div>
+            <p><%= user.name %> (<%= user.pets %>)</p>
+          </div>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate @users %>
+<% end %>

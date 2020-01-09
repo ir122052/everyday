@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: [:destroy]
-  before_action :require_user_logged_in, only: [:destroy]
+  before_action :require_user_logged_in, only: [:index, :destroy]
   
   def index
-    #@users = User.order(id: :desc).page(params[:page]).per(25)
+    @users = User.order(id: :desc).page(params[:page]).per(25)
   end
 
   def new
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation)
+    params.require(:user).permit(:name, :pets, :password, :password_confirmation)
   end
   
   def correct_user
