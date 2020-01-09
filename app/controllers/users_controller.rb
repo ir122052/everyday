@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: [:destroy]
   before_action :require_user_logged_in, only: [:destroy]
+  
+  def index
+    #@users = User.order(id: :desc).page(params[:page]).per(25)
+  end
 
   def new
     @user = User.new
